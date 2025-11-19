@@ -14,28 +14,31 @@ struct ContentView: View {
     var area: Double { return 45*64 }
     //Computed var body pq té codi, ho necessita el struct: View
     var body: some View {
-        VStack {
-            Text("🎯🎯🎯").font(Font.largeTitle)
-            Text("89")
-                .font(Font.largeTitle)
-                .kerning(-1)
-                .fontWeight(.bold)
-            Slider(
-                value: .constant(60),
-                in: 1...100,
-                step: 1)
+        ZStack{
+            Color("BackgroundColor").ignoresSafeArea()
+            VStack {
+                Text("🎯🎯🎯").font(Font.largeTitle)
+                Text("89")
+                    .font(Font.largeTitle)
+                    .kerning(-1)
+                    .fontWeight(.bold)
+                Slider(
+                    value: .constant(60),
+                    in: 1...100,
+                    step: 1)
                 { Text("Slider") }
-            minimumValueLabel: {Text("1").fontWeight(.bold)}
-            maximumValueLabel: {Text("100").fontWeight(.bold)}
-            Button("TRY"){
-                print("try tapped")
-            }.font(.title3)
-                .padding()
-                .foregroundColor(.white)
-                .background(.blue)
-                .cornerRadius(21)
+                minimumValueLabel: {Text("1").fontWeight(.bold)}
+                maximumValueLabel: {Text("100").fontWeight(.bold)}
+                Button("TRY"){
+                    print("try tapped")
+                }.font(.title3)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(.accent)
+                    .cornerRadius(21)
                 
-        }.padding()
+            }.padding()
+        }
     }
 }
 
