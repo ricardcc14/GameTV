@@ -11,21 +11,23 @@ struct ContentView: View {
     //Stored no fa cap càlcul
     
     @State private var alertIsVisible = false
-    @State private var value = 30.0
+    @State private var value = Double(Game.maxValue+Game.minValue)/2
     
+    @State var game = Game()
     //Computed var body pq té codi, ho necessita el struct: View
     var body: some View {
         ZStack{
             Color("BackgroundColor").ignoresSafeArea()
             VStack {
                 Text("🎯🎯🎯").font(Font.largeTitle)
-                Text("85")
+                Text("\(game.target)")
                     .font(Font.largeTitle)
                     .kerning(-1)
                     .fontWeight(.bold)
-                SliderView(value: $value, minValue: 1, maxValue: 100)
+                SliderView(value: $value, minValue: Game.minValue, maxValue: Game.maxValue)
                 Text("\(value)")
                 Button("TRY"){
+                    game.calculatePoints(userValue: value)
                     alertIsVisible = true
                 }.font(.title3)
                     .padding()
@@ -36,11 +38,11 @@ struct ContentView: View {
         }
         .alert("Hello", isPresented: $alertIsVisible,
             actions: {Button("Got it"){
+            game.restart()
+            value = Double(Game.maxValue+Game.minValue)/2
             print("TODO got it")
             alertIsVisible = false}},
-            message: {Text("This is my first alert")})
-            
-        
+            message: {Text("Congrats your points are \(game.points)")})
     }
 }
 
