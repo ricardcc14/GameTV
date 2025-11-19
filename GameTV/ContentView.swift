@@ -9,36 +9,48 @@ import SwiftUI
 
 struct ContentView: View {
     //Stored no fa cap càlcul
-    var name = "View"
     
-    var area: Double { return 45*64 }
+    @State private var alertIsVisible = false
+    @State private var value = 30.0
+    
     //Computed var body pq té codi, ho necessita el struct: View
     var body: some View {
         ZStack{
             Color("BackgroundColor").ignoresSafeArea()
             VStack {
                 Text("🎯🎯🎯").font(Font.largeTitle)
-                Text("89")
+                Text("85")
                     .font(Font.largeTitle)
                     .kerning(-1)
                     .fontWeight(.bold)
                 Slider(
-                    value: .constant(60),
+                    value: $value,
                     in: 1...100,
                     step: 1)
                 { Text("Slider") }
                 minimumValueLabel: {Text("1").fontWeight(.bold)}
                 maximumValueLabel: {Text("100").fontWeight(.bold)}
+                Text("\(value)")
                 Button("TRY"){
-                    print("try tapped")
+                    value+=1
+                    alertIsVisible = true
                 }.font(.title3)
                     .padding()
                     .foregroundColor(.white)
                     .background(.accent)
                     .cornerRadius(21)
                 
+                    
+                
             }.padding()
         }
+        .alert("Hello", isPresented: $alertIsVisible,
+            actions: {Button("Got it"){
+            print("TODO got it")
+            alertIsVisible = false}},
+            message: {Text("This is my first alert")})
+            
+        
     }
 }
 
