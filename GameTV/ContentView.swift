@@ -23,25 +23,15 @@ struct ContentView: View {
                     .font(Font.largeTitle)
                     .kerning(-1)
                     .fontWeight(.bold)
-                Slider(
-                    value: $value,
-                    in: 1...100,
-                    step: 1)
-                { Text("Slider") }
-                minimumValueLabel: {Text("1").fontWeight(.bold)}
-                maximumValueLabel: {Text("100").fontWeight(.bold)}
+                SliderView(value: $value, minValue: 1, maxValue: 100)
                 Text("\(value)")
                 Button("TRY"){
-                    value+=1
                     alertIsVisible = true
                 }.font(.title3)
                     .padding()
                     .foregroundColor(.white)
                     .background(.accent)
                     .cornerRadius(21)
-                
-                    
-                
             }.padding()
         }
         .alert("Hello", isPresented: $alertIsVisible,
@@ -54,6 +44,20 @@ struct ContentView: View {
     }
 }
 
+struct SliderView: View {
+    @Binding var value:Double
+    let minValue:Int
+    let maxValue:Int
+    var body : some View {
+        Slider(
+            value: $value,
+            in: Double(minValue)...Double(maxValue),
+            step: 1)
+        { Text("Slider") }
+        minimumValueLabel: {Text("\(minValue)").fontWeight(.bold)}
+        maximumValueLabel: {Text("\(maxValue)").fontWeight(.bold)}
+    }
+}
 // Permet tenir el canva, no afecta a la app ni codi de deployment
 #Preview {
     ContentView()
