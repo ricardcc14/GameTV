@@ -8,8 +8,10 @@ struct RoundedImageView: View {
     var body: some View {
         VStack{
             Image(systemName: "\(sfSymbolName)")
+                
                 .frame(width: 56, height: 56)
                 .overlay{Circle().stroke(lineWidth: 2).frame(width: 60, height: 60)}
+                .foregroundColor(.primary)
         }
     }
 }

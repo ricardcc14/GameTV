@@ -17,7 +17,7 @@ struct ContentView: View {
     //Computed var body pq té codi, ho necessita el struct: View
     var body: some View {
         ZStack{
-            BackgroundView()
+            BackgroundView(game:$game)
             
             VStack {
                 Text("🎯🎯🎯").font(Font.largeTitle)
@@ -39,7 +39,7 @@ struct ContentView: View {
         }
         .alert("Hello", isPresented: $alertIsVisible,
             actions: {Button("Got it"){
-            game.restart()
+            game.restartRound()
             value = Double(Game.maxValue+Game.minValue)/2
             print("TODO got it")
             alertIsVisible = false}},
