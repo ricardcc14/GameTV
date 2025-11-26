@@ -17,7 +17,8 @@ struct ContentView: View {
     //Computed var body pq té codi, ho necessita el struct: View
     var body: some View {
         ZStack{
-            Color("BackgroundColor").ignoresSafeArea()
+            BackgroundView()
+            
             VStack {
                 Text("🎯🎯🎯").font(Font.largeTitle)
                 Text("\(game.target)")
